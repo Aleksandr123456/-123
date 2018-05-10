@@ -3,31 +3,34 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Board extends JPanel{
+public class Board extends JPanel implements ActionListener {
 
-    private Image backGround;
-    private Image hero;
+    private Image hero, enemy, background;
 
 
-    public Board() {
+    Timer timer = new Timer(20, this);
+
+    JFrame frame;
+
+    public Board(JFrame frame) {
+        this.frame = frame;
         loadImages();
     }
 
-    private void doDrawing(Graphics g) {
-        Graphics2D g2d = (Graphics2D) g;;
-        g2d.drawImage(backGround, 0, 0, this);
-        g2d.drawImage(hero, 20,20, this);
-        Toolkit.getDefaultToolkit().sync();
-        g2d.dispose();
+    public void paint(Graphics g) {
+        g.drawImage(background, 0, 0, frame.getWidth(), frame.getHeight(), null);
+        g.drawImage(hero, 0, 0, null);
+
     }
 
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        doDrawing(g);
+
+    public void actionPerformed(ActionEvent e) {
+        repaint();
     }
 
     private void loadImages() {
-        backGround = new ImageIcon("34.jpg").getImage();
         hero = new ImageIcon("batjaLehi.png").getImage();
+        background = new ImageIcon("34.jpg").getImage();
     }
 }
+
