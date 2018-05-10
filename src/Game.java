@@ -1,15 +1,29 @@
 import javax.swing.*;
+import java.awt.*;
 
-public class Game {
+public class Game extends JFrame {
+
+    public Game() {
+
+        initUI();
+    }
+
+    private void initUI() {
+
+        add(new Board());
+
+        setTitle("MEGA IGRA");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setSize(800, 375);
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
+
     public static void main(String[] args) {
 
-        JFrame window = new JFrame("MEGA GAME");
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        window.setContentPane(new GamePanel());
-
-        window.pack();
-        window.setVisible(true);
-
+        EventQueue.invokeLater(() -> {
+            Game ex = new Game();
+            ex.setVisible(true);
+        });
     }
 }
